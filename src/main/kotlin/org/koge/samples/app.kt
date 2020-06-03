@@ -178,11 +178,12 @@ val scene1 = scene("Level 1") {
 
     var inTheAir=false
 
-    val level1= Level("/levels/mario_level.json")
-
+    level {
+        path="/levels/mario_level.json"
+    }
 
     whenInit {
-        level1.init()
+
         jumpSound = Source().apply {
             init(AudioPlayer.loadSound("/audio/jump.wav"))
         }
@@ -212,7 +213,7 @@ val scene1 = scene("Level 1") {
             }
 
         })
-        var objectLayer = level1.tileMap?.layers?.get(1) as ObjectLayer
+        var objectLayer = level?.tileMap?.layers?.get(1) as ObjectLayer
         objectLayer.objects.forEach {lo->
             bodies.add(
                 addLevelBodies(lo.width.toFloat()/2/PPM,
@@ -221,7 +222,7 @@ val scene1 = scene("Level 1") {
                 (lo.y.toFloat()+lo.height.toFloat()/2)/ PPM , world)
             )
         }
-        objectLayer = level1.tileMap?.layers?.get(2) as ObjectLayer
+        objectLayer = level?.tileMap?.layers?.get(2) as ObjectLayer
         objectLayer.objects.forEach {lo->
             bodies.add(
                 addLevelBodies(lo.width.toFloat()/2/PPM,
@@ -230,7 +231,7 @@ val scene1 = scene("Level 1") {
                 (lo.y.toFloat()+lo.height.toFloat()/2)/ PPM , world)
             )
         }
-        objectLayer = level1.tileMap?.layers?.get(3) as ObjectLayer
+        objectLayer = level?.tileMap?.layers?.get(3) as ObjectLayer
         objectLayer.objects.forEach {lo->
             bodies.add(
                 addLevelBodies(lo.width.toFloat()/2/PPM,
@@ -241,7 +242,6 @@ val scene1 = scene("Level 1") {
         }
 
     }
-
     whenKeyReleased {
 
         if(!inTheAir){
@@ -291,14 +291,11 @@ val scene1 = scene("Level 1") {
     }
 
     render {
-        level1.sprites.forEach { sprite ->
-            g.draw(sprite)
-        }
 
     }
 
     whenDestroy {
-        level1.destroy()
+
     }
 
 }
@@ -306,7 +303,6 @@ val scene1 = scene("Level 1") {
 
 fun main() {
 
-    lateinit var marioSound: Source
 
     game(WIDTH, HEIGHT, "Koge") {
 
@@ -319,7 +315,7 @@ fun main() {
             AudioPlayer.init()
             AudioPlayer.setListenerData(0f, 0f, 0f)
 
-            marioSound = Source().apply {
+            var marioSound = Source().apply {
                 init(AudioPlayer.loadSound("/audio/bg.wav"))
                 setLooping(true)
             }
@@ -332,7 +328,6 @@ fun main() {
         }
 
         whenDestroy {
-            marioSound.delete()
             AudioPlayer.cleanUp()
         }
 
