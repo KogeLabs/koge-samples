@@ -14,7 +14,6 @@ import org.koge.engine.audio.Source
 import org.koge.engine.event.key.Keys
 import org.koge.engine.kernel.game
 import org.koge.engine.utils.PPM
-import org.koge.game.scene.Level
 import org.koge.game.scene.scene
 import org.koge.game.sprite.animatedsprite
 import org.koge.game.tilemap.ObjectLayer
@@ -315,7 +314,7 @@ fun main() {
             AudioPlayer.init()
             AudioPlayer.setListenerData(0f, 0f, 0f)
 
-            var marioSound = Source().apply {
+            val marioSound = Source().apply {
                 init(AudioPlayer.loadSound("/audio/bg.wav"))
                 setLooping(true)
             }
