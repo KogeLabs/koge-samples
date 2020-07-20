@@ -309,7 +309,7 @@ val scene1 = scene("Level 1") {
 fun main() {
 
 
-    game(WIDTH, HEIGHT, "Koge") {
+    game(WIDTH, HEIGHT, "Ockero") {
 
         +scene1
 
