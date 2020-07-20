@@ -1,4 +1,4 @@
-package org.koge.samples
+package org.ockero.samples
 
 
 import org.jbox2d.callbacks.ContactImpulse
@@ -215,28 +215,34 @@ val scene1 = scene("Level 1") {
         var objectLayer = level?.tileMap?.layers?.get(1) as ObjectLayer
         objectLayer.objects.forEach {lo->
             bodies.add(
-                addLevelBodies(lo.width.toFloat()/2/PPM,
-                lo.height.toFloat()/2/PPM,
-                (lo.x.toFloat()+lo.width.toFloat()/2)/PPM,
-                (lo.y.toFloat()+lo.height.toFloat()/2)/ PPM , world)
+                addLevelBodies(
+                    lo.width.toFloat() / 2 / PPM,
+                    lo.height.toFloat() / 2 / PPM,
+                    (lo.x.toFloat() + lo.width.toFloat() / 2) / PPM,
+                    (lo.y.toFloat() + lo.height.toFloat() / 2) / PPM, world
+                )
             )
         }
         objectLayer = level?.tileMap?.layers?.get(2) as ObjectLayer
         objectLayer.objects.forEach {lo->
             bodies.add(
-                addLevelBodies(lo.width.toFloat()/2/PPM,
-                lo.height.toFloat()/2/PPM,
-                (lo.x.toFloat()+lo.width.toFloat()/2)/PPM,
-                (lo.y.toFloat()+lo.height.toFloat()/2)/ PPM , world)
+                addLevelBodies(
+                    lo.width.toFloat() / 2 / PPM,
+                    lo.height.toFloat() / 2 / PPM,
+                    (lo.x.toFloat() + lo.width.toFloat() / 2) / PPM,
+                    (lo.y.toFloat() + lo.height.toFloat() / 2) / PPM, world
+                )
             )
         }
         objectLayer = level?.tileMap?.layers?.get(3) as ObjectLayer
         objectLayer.objects.forEach {lo->
             bodies.add(
-                addLevelBodies(lo.width.toFloat()/2/PPM,
-                lo.height.toFloat()/2/PPM,
-                (lo.x.toFloat()+lo.width.toFloat()/2)/PPM,
-                (lo.y.toFloat()+lo.height.toFloat()/2)/ PPM , world)
+                addLevelBodies(
+                    lo.width.toFloat() / 2 / PPM,
+                    lo.height.toFloat() / 2 / PPM,
+                    (lo.x.toFloat() + lo.width.toFloat() / 2) / PPM,
+                    (lo.y.toFloat() + lo.height.toFloat() / 2) / PPM, world
+                )
             )
         }
 
@@ -323,7 +329,11 @@ fun main() {
         }
 
         whenUpdate {
-            world?.step(timeStep, velocityIterations, positionIterations)
+            world?.step(
+                timeStep,
+                velocityIterations,
+                positionIterations
+            )
         }
 
         whenDestroy {
